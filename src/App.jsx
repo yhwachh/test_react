@@ -15,37 +15,38 @@ const todos = [
 
 function App() {
 
-  const handleClick = (e) => {
-    console.log(e)
-    alert("Jai cliqué sur le title")
-  }
+    const [person,setPerson] = useState({
+      firstName: "John",
+      lastName: "Doe",
+      age: 18
+    })
+
+    const[count,setCount] = useState(0)
+ 
+
+    const increment = () => {
+      
+      setPerson({...person, age: person.age + 1})
+    
+    }
+
+    const incrementCount = () => {
+      
+      setCount(count + 1)
+    
+    }
+
 
 
  return <>
-  <Title color  hidden= "red">bonjour</Title>
-  <input type="text" ></input>
-  <p>
-    bankai bankai
-  </p>
-  <ul>
-    {todos.map(todo => (<li key = {todo}>{todo}</li>))}
-  </ul>
- </>
+    <p>Age de {person.firstName} est : {person.age}</p>
+    <button
+      onClick = {increment}>Gagner une année
+    </button>
+    <button
+      onClick = {incrementCount}>Incrementer {count}
+    </button>
+  </>
 }
-
-function Title ({color, children, hidden}) {// hidden true or false
-  if(!hidden){
-    return null
-  }
-  // avec les ...promps on peut passer des props a un composant 
-
-  
-  const props ={ 
-    id: "monid",
-    className: "monclass",
-  }
-  return <h1 style={{color: color}}{...props}>{children}</h1>
-}
-//les compasants on une majuscule pour le nom du composant et recois des props en parametre
 
 export default App
